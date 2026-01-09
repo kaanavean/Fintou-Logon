@@ -15,6 +15,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Management" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Touch Gesture Recognition System">
+      <HintPath>..\..\..\..\..\..\..\KAVN\Fintou-Tree\System\libraries.arc\Touch Gesture Recognition System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

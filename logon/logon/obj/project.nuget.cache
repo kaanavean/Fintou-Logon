@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "VGJ2OuqAFv0=",
+  "dgSpecHash": "vCvlekCYYpU=",
   "success": true,
   "projectFilePath": "C:\\Users\\deniz\\Documents\\GitHub\\Fintou-logon\\logon\\logon\\logon.vbproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\deniz\\.nuget\\packages\\system.codedom\\10.0.1\\system.codedom.10.0.1.nupkg.sha512",
+    "C:\\Users\\deniz\\.nuget\\packages\\system.management\\10.0.1\\system.management.10.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

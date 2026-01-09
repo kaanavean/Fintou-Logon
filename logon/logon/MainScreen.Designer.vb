@@ -22,21 +22,26 @@ Partial Class MainScreen
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         GestureBar_Image = New PictureBox()
-        Label1 = New Label()
-        Label2 = New Label()
-        Label3 = New Label()
+        Clock_Hours = New Label()
+        Clock_Minutes = New Label()
+        Clock_Date = New Label()
         Label4 = New Label()
         Label5 = New Label()
-        Label6 = New Label()
+        Battery_Percent = New Label()
         PictureBox1 = New PictureBox()
         Label7 = New Label()
+        System_Timer = New Timer(components)
+        Pointer = New Timer(components)
+        Battery_Status = New Timer(components)
         CType(GestureBar_Image, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' GestureBar_Image
         ' 
+        GestureBar_Image.Anchor = AnchorStyles.Bottom
         GestureBar_Image.BackgroundImage = My.Resources.Resources.gesturebutton_home
         GestureBar_Image.BackgroundImageLayout = ImageLayout.Stretch
         GestureBar_Image.Location = New Point(450, 780)
@@ -45,44 +50,48 @@ Partial Class MainScreen
         GestureBar_Image.TabIndex = 0
         GestureBar_Image.TabStop = False
         ' 
-        ' Label1
+        ' Clock_Hours
         ' 
-        Label1.BackColor = Color.Transparent
-        Label1.Font = New Font("Adam Medium", 71.99999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.White
-        Label1.Location = New Point(877, 300)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(180, 80)
-        Label1.TabIndex = 1
-        Label1.Text = "23"
-        Label1.TextAlign = ContentAlignment.MiddleCenter
+        Clock_Hours.Anchor = AnchorStyles.Right
+        Clock_Hours.BackColor = Color.Transparent
+        Clock_Hours.Font = New Font("Adam Medium", 71.99999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Clock_Hours.ForeColor = Color.White
+        Clock_Hours.Location = New Point(877, 300)
+        Clock_Hours.Name = "Clock_Hours"
+        Clock_Hours.Size = New Size(180, 80)
+        Clock_Hours.TabIndex = 1
+        Clock_Hours.Text = "23"
+        Clock_Hours.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label2
+        ' Clock_Minutes
         ' 
-        Label2.BackColor = Color.Transparent
-        Label2.Font = New Font("Adam Medium", 71.99999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.White
-        Label2.Location = New Point(877, 415)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(180, 80)
-        Label2.TabIndex = 2
-        Label2.Text = "27"
-        Label2.TextAlign = ContentAlignment.MiddleCenter
+        Clock_Minutes.Anchor = AnchorStyles.Right
+        Clock_Minutes.BackColor = Color.Transparent
+        Clock_Minutes.Font = New Font("Adam Medium", 71.99999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Clock_Minutes.ForeColor = Color.White
+        Clock_Minutes.Location = New Point(877, 415)
+        Clock_Minutes.Name = "Clock_Minutes"
+        Clock_Minutes.Size = New Size(180, 80)
+        Clock_Minutes.TabIndex = 2
+        Clock_Minutes.Text = "27"
+        Clock_Minutes.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label3
+        ' Clock_Date
         ' 
-        Label3.BackColor = Color.Transparent
-        Label3.Font = New Font("Adam Medium", 23.9999962F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label3.ForeColor = Color.White
-        Label3.Location = New Point(782, 513)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(370, 45)
-        Label3.TabIndex = 3
-        Label3.Text = "2. November"
-        Label3.TextAlign = ContentAlignment.MiddleCenter
+        Clock_Date.Anchor = AnchorStyles.Right
+        Clock_Date.BackColor = Color.Transparent
+        Clock_Date.Font = New Font("Adam Medium", 23.9999962F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Clock_Date.ForeColor = Color.White
+        Clock_Date.Location = New Point(782, 513)
+        Clock_Date.Name = "Clock_Date"
+        Clock_Date.Size = New Size(370, 45)
+        Clock_Date.TabIndex = 3
+        Clock_Date.Text = "2. November"
+        Clock_Date.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label4
         ' 
+        Label4.Anchor = AnchorStyles.Bottom
         Label4.BackColor = Color.Transparent
         Label4.Font = New Font("Adam Medium", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label4.ForeColor = Color.DarkGray
@@ -105,20 +114,22 @@ Partial Class MainScreen
         Label5.Text = "Surface Go"
         Label5.TextAlign = ContentAlignment.MiddleLeft
         ' 
-        ' Label6
+        ' Battery_Percent
         ' 
-        Label6.BackColor = Color.Transparent
-        Label6.Font = New Font("SF UI Display Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label6.ForeColor = Color.White
-        Label6.Location = New Point(1115, 6)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(70, 30)
-        Label6.TabIndex = 6
-        Label6.Text = "100%"
-        Label6.TextAlign = ContentAlignment.MiddleRight
+        Battery_Percent.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        Battery_Percent.BackColor = Color.Transparent
+        Battery_Percent.Font = New Font("SF UI Display Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Battery_Percent.ForeColor = Color.White
+        Battery_Percent.Location = New Point(1115, 6)
+        Battery_Percent.Name = "Battery_Percent"
+        Battery_Percent.Size = New Size(70, 30)
+        Battery_Percent.TabIndex = 6
+        Battery_Percent.Text = "100%"
+        Battery_Percent.TextAlign = ContentAlignment.MiddleRight
         ' 
         ' PictureBox1
         ' 
+        PictureBox1.Anchor = AnchorStyles.Top
         PictureBox1.BackColor = Color.Transparent
         PictureBox1.BackgroundImage = My.Resources.Resources.lock
         PictureBox1.BackgroundImageLayout = ImageLayout.Stretch
@@ -130,6 +141,7 @@ Partial Class MainScreen
         ' 
         ' Label7
         ' 
+        Label7.Anchor = AnchorStyles.Top
         Label7.BackColor = Color.Transparent
         Label7.Font = New Font("Adam Medium", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label7.ForeColor = Color.White
@@ -139,6 +151,20 @@ Partial Class MainScreen
         Label7.TabIndex = 8
         Label7.Text = "Searching for a face"
         Label7.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' System_Timer
+        ' 
+        System_Timer.Enabled = True
+        System_Timer.Interval = 1000
+        ' 
+        ' Pointer
+        ' 
+        Pointer.Enabled = True
+        ' 
+        ' Battery_Status
+        ' 
+        Battery_Status.Enabled = True
+        Battery_Status.Interval = 1
         ' 
         ' MainScreen
         ' 
@@ -150,12 +176,12 @@ Partial Class MainScreen
         ClientSize = New Size(1200, 800)
         Controls.Add(Label7)
         Controls.Add(PictureBox1)
-        Controls.Add(Label6)
+        Controls.Add(Battery_Percent)
         Controls.Add(Label5)
         Controls.Add(Label4)
-        Controls.Add(Label3)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
+        Controls.Add(Clock_Date)
+        Controls.Add(Clock_Minutes)
+        Controls.Add(Clock_Hours)
         Controls.Add(GestureBar_Image)
         DoubleBuffered = True
         FormBorderStyle = FormBorderStyle.None
@@ -168,13 +194,16 @@ Partial Class MainScreen
     End Sub
 
     Friend WithEvents GestureBar_Image As PictureBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents Clock_Hours As Label
+    Friend WithEvents Clock_Minutes As Label
+    Friend WithEvents Clock_Date As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
+    Friend WithEvents Battery_Percent As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label7 As Label
+    Friend WithEvents System_Timer As Timer
+    Friend WithEvents Pointer As Timer
+    Friend WithEvents Battery_Status As Timer
 
 End Class

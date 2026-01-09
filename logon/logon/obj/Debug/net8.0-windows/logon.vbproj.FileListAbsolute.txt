@@ -15,3 +15,10 @@ C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-window
 C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-windows\logon.pdb
 C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-windows\logon.genruntimeconfig.cache
 C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-windows\ref\logon.dll
+C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-windows\logon.vbproj.AssemblyReference.cache
+C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-windows\logon.sourcelink.json
+C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\bin\Debug\net8.0-windows\Touch Gesture Recognition System.dll
+C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-windows\logon.vbproj.Up2Date
+C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\bin\Debug\net8.0-windows\System.CodeDom.dll
+C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\bin\Debug\net8.0-windows\System.Management.dll
+C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Management.dll
