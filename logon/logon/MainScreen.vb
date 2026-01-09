@@ -4,31 +4,28 @@ Imports System.Reflection.Emit
 Imports System.Runtime.InteropServices
 Imports Touch_Gesture_Recognition_System
 
-'AlwaysOn Form missing for Fintou, will be added shortly
+' AlwaysOn Form missing for Fintou, will be added shortly
+' Audio paths need to be replaced with Fintou paths, deactivated for now
 
 Public Class MainScreen
 
-    ' Windows API Funktionen
+    ' Windows API calls to turn off/on the screen
     <DllImport("user32.dll")>
     Private Shared Function SendMessage(hWnd As IntPtr, Msg As UInteger, wParam As IntPtr, lParam As IntPtr) As IntPtr
     End Function
 
     Private Const WM_SYSCOMMAND As UInteger = &H112
     Private Shared ReadOnly SC_MONITORPOWER As IntPtr = CType(&HF170, IntPtr)
-
-    ' Bildschirm ausschalten
     Private Sub TurnOffScreen()
         SendMessage(Me.Handle, WM_SYSCOMMAND, SC_MONITORPOWER, CType(2, IntPtr))
     End Sub
-
-    ' Bildschirm einschalten
     Private Sub TurnOnScreen()
         SendMessage(Me.Handle, WM_SYSCOMMAND, SC_MONITORPOWER, CType(-1, IntPtr))
     End Sub
 
     Private watcher As ManagementEventWatcher
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub MainScreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim query As New WqlEventQuery("SELECT * FROM Win32_PowerManagementEvent")
         watcher = New ManagementEventWatcher(query)
         AddHandler watcher.EventArrived, AddressOf PowerEventArrived
@@ -36,9 +33,10 @@ Public Class MainScreen
     End Sub
     Private Sub PowerEventArrived(sender As Object, e As EventArrivedEventArgs)
         ' EventType 10 = Power Button pressed
+        ' Still working on this part
         Dim eventType As Integer = Convert.ToInt32(e.NewEvent.Properties("EventType").Value)
         If eventType = 10 Then
-            MessageBox.Show("Powerbutton wurde gedrückt!")
+            MessageBox.Show("Powerbutton pressed")
         End If
     End Sub
 
@@ -59,9 +57,11 @@ Public Class MainScreen
     Dim ChargingStart As Boolean
 
     Private Sub SwipeDetectedHandler(ByVal sender As Object, ByVal e As SwipeDetectedEventArgs)
+        ' Needed for the swipe up to unlock function
+        ' Issue arised, because of the Form changing position while dragging
         If e.SwipeDirection = "Swipe Up" Then
             If TouchPoint And EndPoint Then
-                My.Computer.Audio.Play("C:\KAVN\Resources\media.arc\UI\ve_poppingcolours_unlock.wav")
+                'My.Computer.Audio.Play("C:\KAVN\Resources\media.arc\UI\ve_poppingcolours_unlock.wav")
                 Me.Hide()
             End If
         End If
@@ -72,6 +72,8 @@ Public Class MainScreen
     Dim CurrentPointerY As Integer
 
     Private Sub System_Timer_Tick(sender As Object, e As EventArgs) Handles System_Timer.Tick
+        'AlwaysON has been disabled for Fintou version for now
+
         ClockCount = ClockCount + 1
         Clock_Hours.Text = DateAndTime.Now.ToString("HH")
         Clock_Minutes.Text = DateAndTime.Now.ToString("mm")
@@ -176,7 +178,7 @@ Public Class MainScreen
         If y > My.Computer.Screen.Bounds.Height - 200 Then
             TouchPoint = True
             If Not isdraging Then
-                My.Computer.Audio.Play("C:\KAVN\Resources\media.arc\UI\ve_poppingcolours_tap.wav")
+                'My.Computer.Audio.Play("C:\KAVN\Resources\media.arc\UI\ve_poppingcolours_tap.wav")
             End If
             isdraging = True
         Else
@@ -207,11 +209,12 @@ Public Class MainScreen
         Dim chargingStatus As PowerLineStatus = powerStatus.PowerLineStatus
         Dim batteryLifeRemaining As Integer = powerStatus.BatteryLifeRemaining
 
+        ' This part will be combined in the PDMS API later
         If chargingStatus = PowerLineStatus.Online Then
             Dim remainingPercent As Integer = 100 - batteryLifePercentRounded
             LowStatus = False
             If Not ChargingStart Then
-                My.Computer.Audio.Play("C:\KAVN\Resources\media.arc\UI\ChargerPluggedIn.wav")
+                'My.Computer.Audio.Play("C:\KAVN\Resources\media.arc\UI\ChargerPluggedIn.wav")
                 ChargingStart = True
             End If
             If batteryLifeRemaining > 0 And remainingPercent > 0 Then
@@ -230,7 +233,7 @@ Public Class MainScreen
             Battery_Percent.Text = String.Format("{0}%", batteryLifePercentRounded)
             If batteryLifePercentRounded <= 20 Then
                 If Not LowStatus Then
-                    My.Computer.Audio.Play("C:\KAVN\Resources\media.arc\UI\LowBattery.wav")
+                    'My.Computer.Audio.Play("C:\KAVN\Resources\media.arc\UI\LowBattery.wav")
                 End If
                 LowStatus = True
             End If
@@ -242,7 +245,7 @@ Public Class MainScreen
         EndPoint = False
         isdraging = False
         If Me.Visible = False Then
-            Dim hwnd As IntPtr = FindWindow(Nothing, "") ' Fenster-Titel - Correction missing
+            Dim hwnd As IntPtr = FindWindow(Nothing, "") ' Window-Name - Correction missing
             If hwnd <> IntPtr.Zero Then
 
             Else
@@ -264,13 +267,11 @@ Public Class MainScreen
 
     Private Sub UpdateOpacityBasedOnPosition()
         Dim screenHeight As Integer = Screen.PrimaryScreen.Bounds.Height
-        ' Y-Position der Maus relativ zum Bildschirm
         Dim cursorY As Integer = Cursor.Position.Y
-        ' Verhältnis berechnen (0 = ganz oben, 1 = ganz unten)
+        ' Calculate ratio
         Dim ratio As Double = cursorY / screenHeight
-        ' Begrenzen zwischen 0.0 und 1.0
+        ' Limit ratio between 0 and 1
         ratio = Math.Max(0.0, Math.Min(1.0, ratio))
-        ' Sichtbarkeit setzen
         If isdraging Then
             Me.Opacity = Math.Max(0.25, ratio)
         Else

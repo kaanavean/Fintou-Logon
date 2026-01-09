@@ -22,3 +22,4 @@ C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-window
 C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\bin\Debug\net8.0-windows\System.CodeDom.dll
 C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\bin\Debug\net8.0-windows\System.Management.dll
 C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Management.dll
+C:\Users\deniz\Documents\GitHub\Fintou-logon\logon\logon\obj\Debug\net8.0-windows\logon.AlwaysOn.resources

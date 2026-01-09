@@ -27,16 +27,16 @@ Partial Class MainScreen
         Clock_Hours = New Label()
         Clock_Minutes = New Label()
         Clock_Date = New Label()
-        Label4 = New Label()
-        Label5 = New Label()
+        Status_Label = New Label()
+        DeviceType_Label = New Label()
         Battery_Percent = New Label()
-        PictureBox1 = New PictureBox()
-        Label7 = New Label()
+        Lock_Icon = New PictureBox()
+        Security_Label = New Label()
         System_Timer = New Timer(components)
         Pointer = New Timer(components)
         Battery_Status = New Timer(components)
         CType(GestureBar_Image, ComponentModel.ISupportInitialize).BeginInit()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Lock_Icon, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' GestureBar_Image
@@ -89,30 +89,30 @@ Partial Class MainScreen
         Clock_Date.Text = "2. November"
         Clock_Date.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label4
+        ' Status_Label
         ' 
-        Label4.Anchor = AnchorStyles.Bottom
-        Label4.BackColor = Color.Transparent
-        Label4.Font = New Font("Adam Medium", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label4.ForeColor = Color.DarkGray
-        Label4.Location = New Point(450, 740)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(300, 32)
-        Label4.TabIndex = 4
-        Label4.Text = "Swipe to unlock"
-        Label4.TextAlign = ContentAlignment.MiddleCenter
+        Status_Label.Anchor = AnchorStyles.Bottom
+        Status_Label.BackColor = Color.Transparent
+        Status_Label.Font = New Font("Adam Medium", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Status_Label.ForeColor = Color.DarkGray
+        Status_Label.Location = New Point(450, 740)
+        Status_Label.Name = "Status_Label"
+        Status_Label.Size = New Size(300, 32)
+        Status_Label.TabIndex = 4
+        Status_Label.Text = "Swipe to unlock"
+        Status_Label.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label5
+        ' DeviceType_Label
         ' 
-        Label5.BackColor = Color.Transparent
-        Label5.Font = New Font("SF UI Display Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = Color.White
-        Label5.Location = New Point(15, 6)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(126, 30)
-        Label5.TabIndex = 5
-        Label5.Text = "Surface Go"
-        Label5.TextAlign = ContentAlignment.MiddleLeft
+        DeviceType_Label.BackColor = Color.Transparent
+        DeviceType_Label.Font = New Font("SF UI Display Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DeviceType_Label.ForeColor = Color.White
+        DeviceType_Label.Location = New Point(15, 6)
+        DeviceType_Label.Name = "DeviceType_Label"
+        DeviceType_Label.Size = New Size(126, 30)
+        DeviceType_Label.TabIndex = 5
+        DeviceType_Label.Text = "Surface Go"
+        DeviceType_Label.TextAlign = ContentAlignment.MiddleLeft
         ' 
         ' Battery_Percent
         ' 
@@ -120,37 +120,37 @@ Partial Class MainScreen
         Battery_Percent.BackColor = Color.Transparent
         Battery_Percent.Font = New Font("SF UI Display Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Battery_Percent.ForeColor = Color.White
-        Battery_Percent.Location = New Point(1115, 6)
+        Battery_Percent.Location = New Point(1041, 6)
         Battery_Percent.Name = "Battery_Percent"
-        Battery_Percent.Size = New Size(70, 30)
+        Battery_Percent.Size = New Size(144, 30)
         Battery_Percent.TabIndex = 6
         Battery_Percent.Text = "100%"
         Battery_Percent.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' PictureBox1
+        ' Lock_Icon
         ' 
-        PictureBox1.Anchor = AnchorStyles.Top
-        PictureBox1.BackColor = Color.Transparent
-        PictureBox1.BackgroundImage = My.Resources.Resources.lock
-        PictureBox1.BackgroundImageLayout = ImageLayout.Stretch
-        PictureBox1.Location = New Point(577, 67)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(46, 46)
-        PictureBox1.TabIndex = 7
-        PictureBox1.TabStop = False
+        Lock_Icon.Anchor = AnchorStyles.Top
+        Lock_Icon.BackColor = Color.Transparent
+        Lock_Icon.BackgroundImage = My.Resources.Resources.lock
+        Lock_Icon.BackgroundImageLayout = ImageLayout.Stretch
+        Lock_Icon.Location = New Point(577, 67)
+        Lock_Icon.Name = "Lock_Icon"
+        Lock_Icon.Size = New Size(46, 46)
+        Lock_Icon.TabIndex = 7
+        Lock_Icon.TabStop = False
         ' 
-        ' Label7
+        ' Security_Label
         ' 
-        Label7.Anchor = AnchorStyles.Top
-        Label7.BackColor = Color.Transparent
-        Label7.Font = New Font("Adam Medium", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label7.ForeColor = Color.White
-        Label7.Location = New Point(450, 125)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(300, 32)
-        Label7.TabIndex = 8
-        Label7.Text = "Searching for a face"
-        Label7.TextAlign = ContentAlignment.MiddleCenter
+        Security_Label.Anchor = AnchorStyles.Top
+        Security_Label.BackColor = Color.Transparent
+        Security_Label.Font = New Font("Adam Medium", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Security_Label.ForeColor = Color.White
+        Security_Label.Location = New Point(450, 125)
+        Security_Label.Name = "Security_Label"
+        Security_Label.Size = New Size(300, 32)
+        Security_Label.TabIndex = 8
+        Security_Label.Text = "Searching for a face"
+        Security_Label.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' System_Timer
         ' 
@@ -174,11 +174,11 @@ Partial Class MainScreen
         BackgroundImage = My.Resources.Resources.bcg
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(1200, 800)
-        Controls.Add(Label7)
-        Controls.Add(PictureBox1)
+        Controls.Add(Security_Label)
+        Controls.Add(Lock_Icon)
         Controls.Add(Battery_Percent)
-        Controls.Add(Label5)
-        Controls.Add(Label4)
+        Controls.Add(DeviceType_Label)
+        Controls.Add(Status_Label)
         Controls.Add(Clock_Date)
         Controls.Add(Clock_Minutes)
         Controls.Add(Clock_Hours)
@@ -189,7 +189,7 @@ Partial Class MainScreen
         StartPosition = FormStartPosition.CenterScreen
         Text = "Main"
         CType(GestureBar_Image, ComponentModel.ISupportInitialize).EndInit()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(Lock_Icon, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -197,11 +197,11 @@ Partial Class MainScreen
     Friend WithEvents Clock_Hours As Label
     Friend WithEvents Clock_Minutes As Label
     Friend WithEvents Clock_Date As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents Status_Label As Label
+    Friend WithEvents DeviceType_Label As Label
     Friend WithEvents Battery_Percent As Label
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Label7 As Label
+    Friend WithEvents Lock_Icon As PictureBox
+    Friend WithEvents Security_Label As Label
     Friend WithEvents System_Timer As Timer
     Friend WithEvents Pointer As Timer
     Friend WithEvents Battery_Status As Timer
