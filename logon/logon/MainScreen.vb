@@ -4,6 +4,8 @@ Imports System.Reflection.Emit
 Imports System.Runtime.InteropServices
 Imports Touch_Gesture_Recognition_System
 
+'AlwaysOn Form missing for Fintou, will be added shortly
+
 Public Class MainScreen
 
     ' Windows API Funktionen
@@ -32,7 +34,6 @@ Public Class MainScreen
         AddHandler watcher.EventArrived, AddressOf PowerEventArrived
         watcher.Start()
     End Sub
-
     Private Sub PowerEventArrived(sender As Object, e As EventArrivedEventArgs)
         ' EventType 10 = Power Button pressed
         Dim eventType As Integer = Convert.ToInt32(e.NewEvent.Properties("EventType").Value)
@@ -78,7 +79,6 @@ Public Class MainScreen
         'AlwaysOn.Clock_Hours.Text = DateAndTime.Now.ToString("HH")
         'AlwaysOn.Clock_Minutes.Text = DateAndTime.Now.ToString("mm")
         'AlwaysOn.Date_Today.Text = DateAndTime.Now.ToString("dd. MMMM")
-
         If ClockCount > 60 Then
             'AlwaysOn.Clock_Hours.Visible = False
             'AlwaysOn.Clock_Minutes.Visible = False
@@ -124,18 +124,16 @@ Public Class MainScreen
     End Sub
 
     Private Sub Lockscreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Dim originalImage As Image = Image.FromFile("C:\Users\Acer\Pictures\Standard.png")
         Me.BackgroundImageLayout = ImageLayout.Stretch
         Me.WindowState = FormWindowState.Normal
         Me.FormBorderStyle = FormBorderStyle.None
-        Me.Text = "MainLogon"
 
         mouseFilter = New Touch_function()
         Application.AddMessageFilter(mouseFilter)
         AddHandler mouseFilter.SwipeDetected, AddressOf SwipeDetectedHandler
         Me.TopMost = True
 
-        Dim hwnd As IntPtr = FindWindow(Nothing, "HomeScreen") ' Fenster-Titel
+        Dim hwnd As IntPtr = FindWindow(Nothing, "") ' Fenster-Titel
         If hwnd <> IntPtr.Zero Then
 
         Else
@@ -244,12 +242,14 @@ Public Class MainScreen
         EndPoint = False
         isdraging = False
         If Me.Visible = False Then
-            Dim hwnd As IntPtr = FindWindow(Nothing, "HomeScreen") ' Fenster-Titel
+            Dim hwnd As IntPtr = FindWindow(Nothing, "") ' Fenster-Titel - Correction missing
             If hwnd <> IntPtr.Zero Then
 
             Else
                 Try
                     'Process.Start("C:\XDesk Touch\XDesk Touch\bin\Debug\net9.0-windows\XDesk Touch.exe")
+                    'Replacing with Fintou variant of the UI
+                    'Missing CDM
                 Catch ex As Exception
 
                 End Try
@@ -264,18 +264,13 @@ Public Class MainScreen
 
     Private Sub UpdateOpacityBasedOnPosition()
         Dim screenHeight As Integer = Screen.PrimaryScreen.Bounds.Height
-
         ' Y-Position der Maus relativ zum Bildschirm
         Dim cursorY As Integer = Cursor.Position.Y
-
         ' Verhältnis berechnen (0 = ganz oben, 1 = ganz unten)
         Dim ratio As Double = cursorY / screenHeight
-
         ' Begrenzen zwischen 0.0 und 1.0
         ratio = Math.Max(0.0, Math.Min(1.0, ratio))
-
-
-        ' Sichtbarkeit setzen (mit Sicherheitsgrenze)
+        ' Sichtbarkeit setzen
         If isdraging Then
             Me.Opacity = Math.Max(0.25, ratio)
         Else
