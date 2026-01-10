@@ -7,3 +7,5 @@ Until then, the application can be used as a proof of concept.
 The book on creating and using Fintou mentions how to properly organize the files.
 
 I am actively working on writing the book alongside this, so that it can be published along with the first usable version of the system.
+
+Data that requires the Fintou Tree has now been removed to ensure functionality until the tree is available.
